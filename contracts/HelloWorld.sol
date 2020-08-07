@@ -2,7 +2,7 @@
 pragma solidity ^0.6.9;
 
 contract HelloWorld {
-    function hello(string memory name)
+    function hello(string calldata name)
     public pure returns (string memory){
         bytes memory h = bytes("Hello ");
         bytes memory n = bytes(name);
@@ -13,7 +13,6 @@ contract HelloWorld {
         for(uint i = 0; i < n.length; i++){
             b[i + h.length] = n[i];
         }
-        
         return string(b);
     }
 }

@@ -11,7 +11,7 @@ services:
     node:
         image: ethereum/client-go:v1.9.16
         volumes: 
-            - './volumes/nodeex:/var/share/ethereum'
+            - './volumes/node:/var/share/ethereum'
         ports:
             - '8545:8545'
             - '30303:30303'
