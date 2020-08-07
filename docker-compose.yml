@@ -1,0 +1,26 @@
+version: '3'
+services:
+    remix-ide:
+        build: build/remix-ide
+        volumes:
+            - './contracts:/apl/remix-ide/contracts'
+        ports:
+            - '8080:8080'
+            - '65520:65520'
+
+    node:
+        image: ethereum/client-go:v1.9.16
+        volumes: 
+            - './volumes/node1:/var/share/ethereum'
+        ports:
+            - '8545:8545'
+            - '30303:30303'
+        command: >
+            --networkid "10" --datadir /var/share/ethereum
+            --nodiscover --nousb
+            --rpc --rpcaddr "0.0.0.0"
+            --rpcapi="admin,debug,eth,miner,net,personal,rpc,txpool,web3"
+            --allow-insecure-unlock
+            --rpccorsdomain "*"
+            --metrics
+            --password /var/share/ethereum/passwords
